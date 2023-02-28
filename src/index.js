@@ -1,12 +1,14 @@
 import './style.css';
-// import Icon from './icon.png';
-// const myIcon = new Image();
-// myIcon.src = Icon;
+import { domManipulator, toDosManager } from './logicModule';
+const todos = JSON.parse(localStorage.getItem('todos')) || {
+    "home": [],
+    "today": [],
+    "week": [],
+}
+const display = document.querySelector('.main');
 
-// element.appendChild(myIcon);
+const toDoFolders = document.querySelectorAll('.todo-folder');
 
-// function component() {
-   
-// }
-  
-// document.body.appendChild(component());
+toDoFolders.forEach(folder => {
+    folder.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
+})
