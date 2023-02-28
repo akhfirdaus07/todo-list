@@ -456,9 +456,14 @@ li {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid --background-color-dark;
+    border-left: 1px solid #b9b9b9;
 }
-  
+
+#new-todo-title {
+    border-bottom: 1px solid #b9b9b9;
+    margin-bottom: 2rem;
+}
+
 .create-new__input {
     width: 100%;
     border: none;
@@ -689,6 +694,11 @@ li {
     font-size: 1.6rem;
     font-family: 'Montserrat', sans-serif;
     resize: none;
+}
+
+#new-note-title {
+    border-bottom: 1px solid #b9b9b9;
+    margin-bottom: 2rem;
 }
   
 .create-new__note-input:focus {

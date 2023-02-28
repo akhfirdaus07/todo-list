@@ -834,7 +834,17 @@ export const domManipulator = (function () {
         createNewOptions[0].classList.add('create-new__options-items-active');
     }
 
-    
+    function changeActiveFormLink() {
+        const createNewOptions = document.querySelectorAll('.create-new__options-items');
+        createNewOptions.forEach(option => {
+            option.addEventListener('click', e => {
+                createNewOptions.forEach(option => {
+                    option.classList.remove('create-new__options-items-active');
+                });
+                e.target.classList.add('create-new__options-items-active');
+            });
+        })
+    }
 
     return {
         renderToDos,
@@ -854,7 +864,8 @@ export const domManipulator = (function () {
         projectNamesScrollBottom,
         renderEmptyProjectPlaceholder,
         updateActiveNavMain,
-        resetActiveFormLink
+        resetActiveFormLink,
+        changeActiveFormLink
     };
 })();
 

@@ -8,6 +8,7 @@ const todos = JSON.parse(localStorage.getItem('todos')) || {
 const display = document.querySelector('.main');
 const toDoFolders = document.querySelectorAll('.todo-folder');
 const openForm = document.querySelector('.new-todo');
+const closeForm = document.querySelector('.create-new__close');
 const overlayNew = document.querySelector('.overlay-new');
 const addToDoForm = document.querySelector('.create-new');
 const newToDoLink = document.querySelector('#new-todo-link'); 
@@ -30,39 +31,36 @@ document.querySelector('#notes-nav').addEventListener('click', (e) => domManipul
 openForm.addEventListener('click', () => {
     overlayNew.classList.toggle('overlay-new-invisible');
     addToDoForm.classList.toggle('create-new-open');
+    domManipulator.changeActiveFormLink()
 })
 
 // control which form menu is open 
 newToDoLink.addEventListener('click', () =>{
-    // turn off other menus
     newProjectMenu.style.display = "none";
     newNoteMenu.style.display = "none";
-    // DISPLAY SELECTED MENU
     newToDoMenu.style.display = "flex";
 })
 
 newProjectLink.addEventListener('click', () =>{
-    // turn off other menus
     newToDoMenu.style.display = "none";
     newNoteMenu.style.display = "none";
-    // DISPLAY SELECTED MENU
     newProjectMenu.style.display = "flex";
 })
 
 newNoteLink.addEventListener('click', () =>{
-    // turn off other menus
     newToDoMenu.style.display = "none";
     newProjectMenu.style.display = "none";
-    // DISPLAY SELECTED MENU
     newNoteMenu.style.display = "flex";
 })
 
-const createNewOptions = document.querySelectorAll('.create-new__options-items');
-createNewOptions.forEach(option => {
-    option.addEventListener('click', e => {
-        createNewOptions.forEach(option => {
-            option.classList.remove('create-new__options-items-active');
-        });
-        e.target.classList.add('create-new__options-items-active');
-    });
-})
+// closes the form and toggles the display back 
+closeForm.addEventListener('click', () => {
+    overlayNew.classList.toggle('overlay-new-invisible');
+    addToDoForm.classList.toggle('create-new-open');
+    addToDoForm.reset();
+    domManipulator.resetActiveFormLink();
+    domManipulator.removeActivePriority();
+    newToDoMenu.style.display = "flex"; 
+    newProjectMenu.style.display = "none";
+    newNoteMenu.style.display = "none";
+});
