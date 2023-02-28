@@ -6,6 +6,8 @@ const todos = JSON.parse(localStorage.getItem('todos')) || {
     "week": [],
 }
 const display = document.querySelector('.main');
+const editOverlay = document.querySelector('.overlay-edit');
+const editForm = document.querySelector('.edit-popup');
 const toDoFolders = document.querySelectorAll('.todo-folder');
 const createProject = document.querySelector('.create-new__project-submit');
 const createNote = document.querySelector('.create-new__note-submit');
@@ -108,4 +110,8 @@ createNote.addEventListener('click', e => {
         domManipulator.resetActiveFormLink();
     })
 });
-    
+
+// button that confirms edit on a todo
+editForm.addEventListener('submit', e => {
+    toDosManager.editToDo(e, todos, display, editOverlay, editForm);
+})

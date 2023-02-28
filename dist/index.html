@@ -41,6 +41,66 @@
         </footer>
     </div>
 
+    <div class="overlay-edit overlay-edit-invisible">
+        <div class="edit-popup">
+            <div class="edit-popup__close">&times;</div>
+        	<form class="edit-popup__entry">
+        	            
+        	            
+                <textarea class="edit-popup__input" id="edit-todo-title" name="edit-todo" 
+                maxlength="40" required>Title: Pay bills</textarea>
+        	        
+        	    
+        
+        	    
+        	    <textarea class="edit-popup__input edit-popup__input-big" 
+        	    id="edit-todo-details" name="edit-todo" >Details: e.g internet, phone, rent.</textarea>
+        	        
+        	    
+        	    <div class="edit-popup__date">
+        	        <div class="edit-popup__date-title">Due Date:</div>
+        	        <input type="date" class="edit-popup__date-input"id="edit-todo-date" 
+        	        name="edit-todo" required value="2021-01-22">
+        	    </div>
+        	    
+        
+        	    <div class="edit-popup__wrapper-priority-submit">
+        	        <div class="edit-popup__priority">
+        	            <div class="edit-popup__priority-title">Priority:</div>
+        	            <input type="radio" id="edit-low"  
+        	            name="edit-priority" value="low" checked required>
+        	            <label for="edit-low" class="edit-popup__priority-btn edit-popup__priority-btn--low edit-popup__priority-btn--low-active">Low</label>
+            
+        	            <input type="radio" id="edit-medium" 
+        	            name="edit-priority" value="medium" required>
+        	            <label for="edit-medium" class="edit-popup__priority-btn edit-popup__priority-btn--medium">Medium</label>
+            
+        	            <input type="radio" id="edit-high" 
+        	            name="edit-priority" value="high" >
+        	            <label for="edit-high" class="edit-popup__priority-btn edit-popup__priority-btn--high">High</label >
+        	        </div>   
+        
+        	        <input type="submit" class="edit-popup__todo-submit" id="todo-edit-submit" value="Confirm Edit"> 
+        	        
+        	    </div>
+        	    
+        	</form>
+        </div>
+
+    </div>
+
+    <div class="overlay-details overlay-details-invisible">
+        <div class="details-popup">
+            <div class="details-popup__close">&times;</div>
+            <div class="details-popup__content">
+            	<div class="details-popup__title">Go shopping</div>
+            	<div class="details-popup__project"><span class="details-popup__catagory">Project:</span>Diet</div>
+            	<div class="details-popup__priority"><span class="details-popup__catagory">Priority:</span>High</div>
+            	<div class="details-popup__due"><span class="details-popup__catagory">Due Date:</span>January 23rd, 2021</div>
+            	<div class="details-popup__details"><span class="details-popup__details-title">Details: </span><span class="details-popup__details-text">I need chicken, vegetables, cream, steak and some other stuff. Maybe get some sauces n stuff too.</span></div>
+            </div>
+        </div>
+    </div>
     <div class="overlay-new overlay-new-invisible">
         <form class="create-new">
             <div class="create-new__header">
