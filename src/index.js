@@ -1,5 +1,5 @@
 import './style.css';
-import { domManipulator, toDosManager } from './logicModule';
+import {domManipulator, notesManager} from "./todoFunctions.js"
 const todos = JSON.parse(localStorage.getItem('todos')) || {
     "home": [],
     "today": [],
