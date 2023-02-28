@@ -7,6 +7,8 @@ const todos = JSON.parse(localStorage.getItem('todos')) || {
 }
 const display = document.querySelector('.main');
 const toDoFolders = document.querySelectorAll('.todo-folder');
+const createProject = document.querySelector('.create-new__project-submit');
+const createNote = document.querySelector('.create-new__note-submit');
 const openForm = document.querySelector('.new-todo');
 const closeForm = document.querySelector('.create-new__close');
 const overlayNew = document.querySelector('.overlay-new');
@@ -79,3 +81,31 @@ const priorityBtns = document.querySelectorAll('.create-new__priority-btn');
         domManipulator.activePriority(e);
     });
 })
+
+
+// add new poject
+createProject.addEventListener('click', e => {
+    toDosManager.addNewProject(e, todos, overlayNew, addToDoForm, display);
+    
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+      }
+    sleep(300).then(() => {
+        // resets form active link back to new todo
+        domManipulator.resetActiveFormLink();
+    })
+})
+
+// add new note
+createNote.addEventListener('click', e => {
+    notesManager.addNewNote(e, notes, overlayNew, addToDoForm, display);
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+      }
+    sleep(300).then(() => {
+        // resets form active link back to new todo
+        domManipulator.resetActiveFormLink();
+    })
+});
+    
