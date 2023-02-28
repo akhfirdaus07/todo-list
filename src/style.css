@@ -67,7 +67,7 @@ body {
     height: 60rem;
     display: grid;
     grid-template-rows: 6rem 54rem 3rem;
-    grid-template-columns: 28rem 1fr;
+    grid-template-columns: 20rem 1fr;
     border-radius: 3px;
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
     overflow: hidden;
@@ -83,13 +83,13 @@ body {
   
 @media (max-width: 1000px) {
     .content {
-        grid-template-columns: 26rem 1fr;
+        grid-template-columns: 20rem 1fr;
     }
 }
   
 @media (max-width: 900px) {
     .content {
-        grid-template-columns: 22rem 1fr;
+        grid-template-columns: 20rem 1fr;
     }
 }
   
@@ -130,7 +130,7 @@ body {
 .side-bar {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
-    padding: 4rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,7 +157,7 @@ body {
 }
 
 .nav {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 300;
     list-style: none;
 }
