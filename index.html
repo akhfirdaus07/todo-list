@@ -9,6 +9,38 @@
     <title>Todo List</title>
 </head>
 <body>
+    <div class="content">
+        <header class="header">
+            <img src="../src/images/icon.png" alt="logo" class="logo">
+            <h1>TO-DO LIST APP</h1>
+        </header>
+
+        <nav class="side-bar">
+            <ul class="nav">
+                <li class="nav__item nav__item--link project-count-container nav__selected"><span class="project-name todo-folder">Home</span><span class="home-count">0</span></li>
+                <li class="nav__item nav__item--link project-count-container"><span class="project-name todo-folder">Today</span><span class="today-count">0</span></li>
+                <li class="nav__item nav__item--link project-count-container" id="week-nav"><span class="project-name todo-folder">Week</span><span class="week-count">0</span></li>
+                <li class="nav__item--projects">
+                    <span class="nav__item--projects-title">Projects</span>
+                    <ul class="projects"></ul>
+                </li>
+                <li class="nav__item nav__item--link" id="notes-nav">Notes</li>
+            </ul>
+            <div class="new-todo">&plus;</div>
+        </nav>
+
+        <div class="main__container">
+            <main class="main"></main>
+        </div>
+
+        <footer class="footer">
+            <p>Copyright © 2023 akhfirdaus07</p>
+            <a href="https://github.com/akhfirdaus07">
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+        </footer>
+    </div>
+
     <div class="overlay-new overlay-new-invisible">
         <form class="create-new">
             <div class="create-new__header">
@@ -46,7 +78,7 @@
                             name="create-new-priority" value="high" >
                             <label for="create-new-high" class="create-new__priority-btn create-new__priority-btn--high">High</label >
                         </div>
-                        <input type="submit" class="create-new__todo-submit" id="todo-submit" value="Add To Do">
+                        <input type="submit" class="create-new__todo-submit" id="todo-submit" value="Create To Do">
                     </div>
                 </div>
                 <div class="create-new__project" id="new-project-menu">
@@ -65,39 +97,7 @@
         </form>
     </div>
 
-    <div class="content">
-        <header class="header">
-            <img src="../src/images/icon.png" alt="logo" class="logo">
-            <h1>TO-DO LIST APP</h1>
-        </header>
-
-        <nav class="side-bar">
-            <ul class="nav">
-                <li class="nav__item nav__item--link project-count-container nav__selected"><span class="project-name todo-folder">Home</span><span class="home-count">0</span></li>
-                <li class="nav__item nav__item--link project-count-container"><span class="project-name todo-folder">Today</span><span class="today-count">0</span></li>
-                <li class="nav__item nav__item--link project-count-container" id="week-nav"><span class="project-name todo-folder">Week</span><span class="week-count">0</span></li>
-                <li class="nav__item--projects">
-                    <span class="nav__item--projects-title">Projects</span>
-                    <ul class="projects"></ul>
-                </li>
-                <li class="nav__item nav__item--link" id="notes-nav">Notes</li>
-            </ul>
-            <div class="new-todo">&plus;</div>
-        </nav>
-
-        <div class="main__container">
-            <main class="main"></main>
-        </div>
-
-        <footer class="footer">
-            <p>Copyright © 2023 akhfirdaus07</p>
-            <a href="https://github.com/akhfirdaus07">
-                <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
-        </footer>
-    </div>
-
-
+    
     <script src="main.js" defer></script>
 </body>
 </html>
