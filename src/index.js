@@ -1,5 +1,5 @@
 import './style.css';
-import {domManipulator, notesManager} from "./todoFunctions.js"
+import {toDosManager, domManipulator, notesManager} from "./logicModule"
 const todos = JSON.parse(localStorage.getItem('todos')) || {
     "home": [],
     "today": [],
@@ -18,6 +18,10 @@ const newToDoMenu = document.querySelector('#new-todo-menu');
 const newProjectMenu = document.querySelector('#new-project-menu');
 const newNoteMenu = document.querySelector('#new-note-menu');
 
+// initial homescreen render
+domManipulator.renderAllToDos(todos, display);
+domManipulator.renderProjectNames(todos, display);
+
 // navigate to home/today/week
 toDoFolders.forEach(folder => {
     folder.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
@@ -32,26 +36,24 @@ openForm.addEventListener('click', () => {
     overlayNew.classList.toggle('overlay-new-invisible');
     addToDoForm.classList.toggle('create-new-open');
     domManipulator.changeActiveFormLink()
-})
+});
 
 // control which form menu is open 
 newToDoLink.addEventListener('click', () =>{
     newProjectMenu.style.display = "none";
     newNoteMenu.style.display = "none";
     newToDoMenu.style.display = "flex";
-})
-
+});
 newProjectLink.addEventListener('click', () =>{
     newToDoMenu.style.display = "none";
     newNoteMenu.style.display = "none";
     newProjectMenu.style.display = "flex";
-})
-
+});
 newNoteLink.addEventListener('click', () =>{
     newToDoMenu.style.display = "none";
     newProjectMenu.style.display = "none";
     newNoteMenu.style.display = "flex";
-})
+});
 
 // closes the form and toggles the display back 
 closeForm.addEventListener('click', () => {
@@ -64,3 +66,16 @@ closeForm.addEventListener('click', () => {
     newProjectMenu.style.display = "none";
     newNoteMenu.style.display = "none";
 });
+
+// when the submit new todo button is pressed, grab data from the form and create a new todo
+addToDoForm.addEventListener('submit', e => {
+    toDosManager.addNewToDo(e, todos, display, overlayNew, addToDoForm);
+});
+
+// when a low / medium / high priority button is clicked
+const priorityBtns = document.querySelectorAll('.create-new__priority-btn');
+    priorityBtns.forEach(btn => {
+    btn.addEventListener('click', e =>{
+        domManipulator.activePriority(e);
+    });
+})
