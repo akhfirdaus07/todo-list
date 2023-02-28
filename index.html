@@ -10,10 +10,24 @@
 </head>
 <body>
     <div class="content">
-        <div class="header">
+        <header class="header">
             <img src="../src/images/icon.png" alt="logo" class="logo">
             <h1>TO-DO LIST APP</h1>
-        </div>
+        </header>
+
+        <nav class="side-bar">
+            <ul class="nav">
+                <li class="nav__item nav__item--link project-count-container nav__selected"><span class="project-name todo-folder">Home</span><span class="home-count">0</span></li>
+                <li class="nav__item nav__item--link project-count-container"><span class="project-name todo-folder">Today</span><span class="today-count">0</span></li>
+                <li class="nav__item nav__item--link project-count-container" id="week-nav"><span class="project-name todo-folder">Week</span><span class="week-count">0</span></li>
+                <li class="nav__item--projects">
+                    <span class="nav__item--projects-title">Projects</span>
+                    <ul class="projects"></ul>
+                </li>
+                <li class="nav__item nav__item--link" id="notes-nav">Notes</li>
+            </ul>
+            <div class="new-todo">&plus;</div>
+        </nav>
 
         <footer class="footer">
             <p>Copyright © 2023 akhfirdaus07</p>
