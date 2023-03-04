@@ -73,7 +73,7 @@ export const domManipulator = (function () {
             toDoEdit.classList.add('todo__icon');
             toDoEdit.addEventListener('click', e => renderEdit(e, toDoList, element));
             const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-            use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "images/edit.svg")
+            use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "images/edit.svg#icon-edit")
             toDoEdit.appendChild(use);
             
             // create a delete icon for the to-do item
@@ -613,7 +613,6 @@ export const domManipulator = (function () {
                 renderAllToDos(todos, display);
                 updateActiveNavMain(e);
             } else {
-                
                 renderToDos(todos, display);
                 updateActiveNavMain(e);
             }

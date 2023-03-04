@@ -171,6 +171,10 @@ li {
     padding: .5rem 1.5rem;
 }
 
+.nav__item:last-child {
+    cursor: pointer;
+}
+
 .nav__item:hover {
     color: var(--color-green);
 }
@@ -932,7 +936,7 @@ li {
     border-radius: 4px;
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
     color: #501f3a;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255);
     transform: scale(0.05);
     transition: all .3s;
   }
