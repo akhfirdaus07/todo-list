@@ -443,20 +443,25 @@ export const domManipulator = (function () {
 
         // grabs all sibling elements of the clicked checkbox
         const toDo = e.target.parentElement;
+
+        console.log(toDo.classList)
+
+        toDo.classList.toggle('todo-checked');
+
         const toDoItems = toDo.children;
         
-        // todo checkbox
+        // // todo checkbox
         toDoItems[0].classList.toggle('todo__complete-checked');
-        // todo title
-        toDoItems[1].classList.toggle('todo__title-checked');
-        // todo details button
-        toDoItems[2].classList.toggle('todo__detail-checked');
-        // todo date
-        toDoItems[3].classList.toggle('todo__date-checked');
-        // todo edit icon
-        toDoItems[4].classList.toggle('todo__icon-checked');
-        // todo delete icon
-        toDoItems[5].classList.toggle('todo__icon-checked');
+        // // todo title
+        // toDoItems[1].classList.toggle('todo__title-checked');
+        // // todo details button
+        // toDoItems[2].classList.toggle('todo__detail-checked');
+        // // todo date
+        // toDoItems[3].classList.toggle('todo__date-checked');
+        // // todo edit icon
+        // toDoItems[4].classList.toggle('todo__icon-checked');
+        // // todo delete icon
+        // toDoItems[5].classList.toggle('todo__icon-checked');
 
         // toggle checked status on todo item data
         const project = toDo.dataset.project;
@@ -476,20 +481,23 @@ export const domManipulator = (function () {
     // applies checked status to checked items on reload
     function applyCheckedOnReload(toDoItem) {
 
+        toDoItem.classList.toggle('todo-checked');
         const toDoItems = toDoItem.children;
+
+
         
-        // todo checkbox
+        // // todo checkbox
         toDoItems[0].classList.toggle('todo__complete-checked');
-        // todo title
-        toDoItems[1].classList.toggle('todo__title-checked');
-        // todo details button
-        toDoItems[2].classList.toggle('todo__detail-checked');
-        // todo date
-        toDoItems[3].classList.toggle('todo__date-checked');
-        // todo edit icon
-        toDoItems[4].classList.toggle('todo__icon-checked');
-        // todo delete icon
-        toDoItems[5].classList.toggle('todo__icon-checked');
+        // // todo title
+        // toDoItems[1].classList.toggle('todo__title-checked');
+        // // todo details button
+        // toDoItems[2].classList.toggle('todo__detail-checked');
+        // // todo date
+        // toDoItems[3].classList.toggle('todo__date-checked');
+        // // todo edit icon
+        // toDoItems[4].classList.toggle('todo__icon-checked');
+        // // todo delete icon
+        // toDoItems[5].classList.toggle('todo__icon-checked');
     }
 
     function removeActivePriority() {

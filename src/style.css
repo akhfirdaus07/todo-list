@@ -748,7 +748,10 @@ li {
     padding: 1rem;
     margin-bottom: 1rem;
     background-color: #eee;
-  }
+}
+.todo-checked {
+    opacity:0.4;
+}
   
 .todo__title {
     margin-right: 2rem;
