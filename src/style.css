@@ -22,31 +22,6 @@ html {
     box-sizing: border-box;
     overflow-x: hidden;
     font-size: 62.5%;
-    font-size: 12px;
-}
-
-@media (max-width: 1200px) {
-    html {
-        font-size: 62.5%;
-    }
-}
-
-@media (max-width: 1000px) {
-    html {
-        font-size: 56.75%;
-    }
-}
-
-@media (max-width: 800px) {
-    html {
-        font-size: 50%;
-    }
-}
-
-@media (max-width: 700px) {
-    html {
-        font-size: 43.75%;
-    }
 }
 
 body {
@@ -111,7 +86,6 @@ li {
 }
 
 /* Header */
-
 .header {
     grid-row: 1 / 2;
     grid-column: 1 / 3;
@@ -131,7 +105,6 @@ li {
 }
 
 /* Side Bar */
-
 .side-bar {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
@@ -143,13 +116,11 @@ li {
     background-color: var(--background-color-dark);
     z-index: 1;
 }
-  
 @media (max-width: 1000px) {
     .side-bar {
         padding: 2rem;
     }
 }
-  
 @media (max-width: 550px) {
     .side-bar {
         grid-column: 2 / 3;
@@ -160,12 +131,10 @@ li {
         transition: all .2s;
     }
 }
-
 .nav {
     font-size: 1.5rem;
     font-weight: 300;
 }
-  
 .nav__item {
     width: auto;
     margin-bottom: 1rem;
@@ -865,11 +834,6 @@ li {
     font-weight: 300;
 }
   
-.todo__title-checked {
-    color: #8d8d8d;
-    text-decoration: line-through;
-}
-  
 .todo__detail {
     position: relative;
     margin-right: 2.5rem;
@@ -890,25 +854,11 @@ li {
     color: white;
 }
   
-.todo__detail-checked {
-    border: 1px solid rgba(59, 163, 149, 0.5);
-    color: rgba(59, 163, 149, 0.5);
-}
-  
-.todo__detail-checked:hover {
-    border: 1px solid rgba(59, 163, 149, 0);
-    background-color: rgba(59, 163, 149, 0.5);
-}
-  
 .todo__date {
     margin-right: 2rem;
     width: 4.5rem;
     font-size: 1rem;
     color: #501f3a;
-}
-  
-.todo__date-checked {
-    color: rgba(80, 31, 58, 0.5);
 }
   
 .todo__complete {
@@ -938,19 +888,6 @@ li {
   
 .todo__icon-edit {
     margin-right: 2rem;
-}
-  
-.todo__icon:hover {
-    fill: #3ba395;
-}
-  
-.todo__icon-checked {
-    fill: rgba(80, 31, 58, 0.4);
-    opacity: 0.5;
-}
-  
-.todo__icon-checked:hover {
-    fill: rgba(59, 163, 149, 0.5);
 }
   
 .todo:hover {

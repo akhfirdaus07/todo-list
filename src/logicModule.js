@@ -14,9 +14,7 @@ export const domManipulator = (function () {
         
 
         // grab relevent todo items
-        const toDoList = todos[toDosManager.getCurrentProject()];
-        // console.log(toDoList);
-        
+        const toDoList = todos[toDosManager.getCurrentProject()];       
 
         // clear out display before redisplaying all to-dos
         element.innerHTML = "" 
@@ -105,7 +103,6 @@ export const domManipulator = (function () {
     // render all to-dos from all projects 
     function renderAllToDos(toDoObject, element) {
 
-        
 
         // clear out display before redisplaying all to-dos
         element.innerHTML = "" 
@@ -130,7 +127,7 @@ export const domManipulator = (function () {
                 const toDoCheckBox = document.createElement('div');
                 toDoCheckBox.classList.add('todo__complete');
                 toDoCheckBox.addEventListener('click', e => toggleCheckBox(e, toDoObject, element));
-                
+
                 // create to-do item title
                 const toDoTitle = document.createElement('div');
                 toDoTitle.classList.add('todo__title');
@@ -443,39 +440,19 @@ export const domManipulator = (function () {
 
         // grabs all sibling elements of the clicked checkbox
         const toDo = e.target.parentElement;
-
-        console.log(toDo.classList)
-
         toDo.classList.toggle('todo-checked');
 
         const toDoItems = toDo.children;
-        
         // // todo checkbox
         toDoItems[0].classList.toggle('todo__complete-checked');
-        // // todo title
-        // toDoItems[1].classList.toggle('todo__title-checked');
-        // // todo details button
-        // toDoItems[2].classList.toggle('todo__detail-checked');
-        // // todo date
-        // toDoItems[3].classList.toggle('todo__date-checked');
-        // // todo edit icon
-        // toDoItems[4].classList.toggle('todo__icon-checked');
-        // // todo delete icon
-        // toDoItems[5].classList.toggle('todo__icon-checked');
-
         // toggle checked status on todo item data
         const project = toDo.dataset.project;
         const index = toDo.dataset.index;
-
         toDoObject[project][index].checked = !toDoObject[project][index].checked;
-        console.log(toDoObject[project]);
-    
         // save todos to local storage
         localStorage.setItem("todos", JSON.stringify(toDoObject));
-
         // update project count
         renderProjectNames(toDoObject, display)
-        
     }
 
     // applies checked status to checked items on reload
@@ -544,7 +521,6 @@ export const domManipulator = (function () {
             toDosManager.changeCurrentProject(e.target.textContent);
         }
 
-        console.log("you are in folder", toDosManager.getCurrentProject());
 
     
 
@@ -576,14 +552,9 @@ export const domManipulator = (function () {
     // function to handle clicks on the wider navigation area. 
     // I could'nt get it to work otherwise.
     function changeFolder2(e, todos, display) {
-        // console.log('second');
-        // console.log(e.target.childNodes[0].textContent.toLowerCase());
-        
         if (e.target.tagName == 'li' || e.target.tagName == 'LI') {
             // sets the current folder variable to nav item that was clicked
             // toDosManager.changeCurrentProject(e.target.childNodes[0].textContent.toLowerCase());
-            // console.log("you are in folder", toDosManager.getCurrentProject());
-            // console.log(e.target.childNodes[0].textContent.toLowerCase());
 
             // sets the current folder variable to nav item that was clicked
         
@@ -592,11 +563,6 @@ export const domManipulator = (function () {
             } else {
                 toDosManager.changeCurrentProject(e.target.childNodes[0].textContent);
             }
-
-            console.log("you are in folder", toDosManager.getCurrentProject());
-
-
-
             
             // render all to-dos from all projects if on the home page. otherwise
             // only render the relevent to-do items
@@ -632,8 +598,6 @@ export const domManipulator = (function () {
         delete projectsObject.today;
         delete projectsObject.week;
 
-        // console.log("custom projects", projectsObject);
-
         // display project names and counts to the sidebar
         for (const project in projectsObject) {
 
@@ -667,19 +631,13 @@ export const domManipulator = (function () {
                     n++
                 }
             })
-
-            
             projectCount.textContent = n;
-
             projectNameCount.appendChild(projectName);
             // only show count if greater than 0
             if (n > 0) {
                 projectNameCount.appendChild(projectCount);
             }
-            
             projectContainer.appendChild(projectNameCount);
-
-            
             // this re-applys nav link selected status to selected custom project,
             // since the entire custom project names div is re-rendered each time. 
             if(toDosManager.getCurrentProject() == project) {
@@ -687,17 +645,9 @@ export const domManipulator = (function () {
             }
         }
 
-
         // update home / today / week folders. only count non checked items
         const homeCount = document.querySelector('.home-count');
         // sums number of non checked item in project array and displays count text as this sum
-        // this will only count the items that are specifically saved to home folder,
-        // i want to count all todos.
-
-        // homeCount.textContent = todos.home.reduce((total, value) => {
-        //     return total + !value.checked;
-        // }, 0);
-
         let homeCountNumber = 0;
         for (const todoList in todos) {
             todos[todoList].forEach(todo => {
@@ -737,12 +687,6 @@ export const domManipulator = (function () {
             // hide count display if 0
             todayCount.style.display = 'none';
         }
-        
-    }
-
-    // display the amount of todo items next to the project title
-    function renderProjectCount(todos, display) {
- 
     }
 
     // scroll poject names to top
@@ -787,10 +731,6 @@ export const domManipulator = (function () {
             renderAllToDos(todos, display);
             // update nave link to show home active
             document.querySelector('.nav').children.item(0).classList.add('nav__selected');
-            console.log(document.querySelector('.nav').children.item(0));
-
-            
-
         })
     }
 
@@ -808,7 +748,6 @@ export const domManipulator = (function () {
                 e.target.parentElement.classList.add('nav__selected');
             } else if (e.target.tagName == "li" || e.target.tagName == "LI") {
                 e.target.classList.add('nav__selected');
-                // console.log(e.target);
             }
         }
         
@@ -849,7 +788,6 @@ export const domManipulator = (function () {
         changeFolder,
         changeFolder2,
         renderProjectNames,
-        renderProjectCount,
         projectNamesScrollTop,
         projectNamesScrollBottom,
         renderEmptyProjectPlaceholder,
@@ -876,9 +814,6 @@ export const toDosManager = (function () {
     function getCurrentProject() {
         return currentProject;
     }
-
-   
-
 
     // To-do factory function
     function createToDo(name, priority, date, details, project, checked=false) {
@@ -924,16 +859,11 @@ export const toDosManager = (function () {
         form.classList.toggle('create-new-open');
 
         // I want the form to fade out before the inputs are reset
-        const sleep = (milliseconds) => {
-            return new Promise(resolve => setTimeout(resolve, milliseconds))
-          }
         
-        sleep(300).then(() => {
-            // clear inputs after submission 
             form.reset();
             // removes active status from all buttons
             domManipulator.removeActivePriority();
-        })
+        
 
         // update project name counter 
         domManipulator.renderProjectNames(toDoList, display);
@@ -959,16 +889,12 @@ export const toDosManager = (function () {
         // only render the relevent to-do items
         if (getCurrentProject() === 'home') {
             domManipulator.renderAllToDos(toDoList, display);
-            console.log(toDoList);
         } else {
             domManipulator.renderToDos(toDoList, display);
         }
 
         overlay.classList.toggle('overlay-edit-invisible');
-        form.classList.toggle('edit-popup-open');
-
-        // console.log(document.querySelector('.edit-popup__input').value);
-        
+        form.classList.toggle('edit-popup-open');        
     }
 
     // removes selected to-do item from the array and re renders the display
@@ -984,9 +910,7 @@ export const toDosManager = (function () {
             toDoList[project].splice(i, 1);
             domManipulator.renderAllToDos(toDoList, display);
             // logs the entire to-do object
-            // console.log(toDoList);
         } else {
-            // console.log(toDoList[toDosManager.getCurrentProject()]);
             // logs just the project array
             
             toDoList[toDosManager.getCurrentProject()].splice(i, 1);
@@ -994,7 +918,6 @@ export const toDosManager = (function () {
             domManipulator.renderToDos(toDoList, display);
         }
 
-        // console.log('del', toDoList)
         //check if a project is now empty, and delete the project if true
         checkEmptyProject(toDoList, display);
         // save todos to local storage
@@ -1016,7 +939,6 @@ export const toDosManager = (function () {
             
             // sets the current folder variable to nav item that was clicked
             toDosManager.changeCurrentProject(newProject);
-            console.log("you are in folder", toDosManager.getCurrentProject());
 
             // render all to-dos from all projects if on the home page. otherwise
             // only render the relevent to-do items
@@ -1042,11 +964,9 @@ export const toDosManager = (function () {
             // render all to-dos from all projects if on the home page. otherwise
             // only render the relevent to-do items
             if (newProject.toLowerCase() === 'home') {
-                console.log(`${newProject} already exists. changing folder to ${newProject}`);
                 changeCurrentProject(newProject.toLowerCase());
                 domManipulator.renderAllToDos(todos, display);
             } else {
-                console.log(`${newProject} already exists. changing folder to ${newProject}`);
                 changeCurrentProject(newProject.toLowerCase());
                 domManipulator.renderToDos(todos, display);
             }
@@ -1077,7 +997,6 @@ export const toDosManager = (function () {
 
         //update local storage
         localStorage.setItem("todos", JSON.stringify(todos));
-
     }
 
     function checkEmptyProject(todos, display) {
@@ -1085,6 +1004,9 @@ export const toDosManager = (function () {
         
         // get an object of only the custom projects
         const projectsObject = Object.assign({}, todos);
+
+        console.log(projectsObject)
+        
         delete projectsObject.home;
         delete projectsObject.today;
         delete projectsObject.week;
@@ -1104,24 +1026,8 @@ export const toDosManager = (function () {
 
                 // update nave link to show home active
                 document.querySelector('.nav').children.item(0).classList.add('nav__selected');
-                console.log(document.querySelector('.nav').children.item(0));
             }
         }
-        
-
-        // deletes all empty projects
-        // for (const project in projectsObject) {
-        //     console.log(project);
-        //     console.log(projectsObject[project]);
-        //     console.log(projectsObject[project].length);
-        //     if (projectsObject[project].length < 1) {
-        //         delete todos[project];
-        //         domManipulator.renderProjectNames(todos, display);
-        //     }
-        // }
-
-        
-        
     }
 
     return {
@@ -1262,7 +1168,6 @@ export const notesManager = (function () {
 
     // delete selected note and refresh the notes
     function deleteNote(e, notes) {
-        console.log(notes);
         const i = e.target.parentElement.dataset.index;
         notes.splice(i, 1);
         arrangeNotes(notes);
@@ -1284,7 +1189,6 @@ export const notesManager = (function () {
         } else if (toEdit ==="text") {
             notes[i].text = newText;
         }
-        // console.log('editing note');
 
         // save notes to local storage
         localStorage.setItem("notes", JSON.stringify(notes));
