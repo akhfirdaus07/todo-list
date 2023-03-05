@@ -1,6 +1,8 @@
 import {format} from "date-fns";
 import { el } from "date-fns/locale";
 import Colcade from 'colcade';
+import IconEdit from './images/edit.png';
+import IconDelete from './images/bin.png';
 
 
 // DOM manipulation object 
@@ -68,22 +70,18 @@ export const domManipulator = (function () {
             toDoDate.textContent = dateFormated;
 
             // create a edit icon for the to-do item
-            const toDoEdit = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            const toDoEdit = new Image();
+            toDoEdit.src=IconEdit
             toDoEdit.classList.add('todo__icon-edit');
             toDoEdit.classList.add('todo__icon');
             toDoEdit.addEventListener('click', e => renderEdit(e, toDoList, element));
-            const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-            use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "images/edit.svg#icon-edit")
-            toDoEdit.appendChild(use);
             
             // create a delete icon for the to-do item
-            const toDoDelete = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            const toDoDelete = new Image();
+            toDoDelete.src=IconDelete;
             toDoDelete.classList.add('todo__icon');
             toDoDelete.classList.add('todo__icon-bin');
             toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, todos, element));
-            const use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
-            use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "images/icons.svg")
-            toDoDelete.appendChild(use2);
             
             toDoBody.appendChild(toDoCheckBox);
             toDoBody.appendChild(toDoTitle);
@@ -158,23 +156,19 @@ export const domManipulator = (function () {
                 toDoDate.textContent = dateFormated;
 
                 // create a edit icon for the to-do item
-                const toDoEdit = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                const toDoEdit=new Image();
+                toDoEdit.src=IconEdit;
                 toDoEdit.classList.add('todo__icon-edit');
                 toDoEdit.classList.add('todo__icon');
                 toDoEdit.addEventListener('click', e => renderEdit(e, toDoObject[project], element));
-                const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-                use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "images/edit.svg")
-                toDoEdit.appendChild(use);
                 
                 // create a delete icon for the to-do item
-                const toDoDelete = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                const toDoDelete = new Image();
+                toDoDelete.src=IconDelete;
                 toDoDelete.classList.add('todo__icon');
                 toDoDelete.classList.add('todo__icon-bin');
                 toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, toDoObject, element));
-                const use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
-                use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "images/icons.svg")
-                toDoDelete.appendChild(use2);
-                
+                                
                 toDoBody.appendChild(toDoCheckBox);
                 toDoBody.appendChild(toDoTitle);
                 toDoBody.appendChild(toDoDetails);
@@ -290,22 +284,8 @@ export const domManipulator = (function () {
     function renderEdit(e, todos) {
 
         const element = e.target;
-        // sometimes the event target is the svg element, other times it is the use element.
-        // this ensures i get index of the to-do body item 
-        let i;
-        let project;
-
-        if (element.tagName === 'svg') {
-            i = element.parentElement.dataset.index;
-        } else if (element.tagName === 'use') {
-            i = element.parentElement.parentElement.dataset.index;
-        }
-
-        if (element.tagName === 'svg') {
-            project = element.parentElement.dataset.project;
-        } else if (element.tagName === 'use') {
-            project = element.parentElement.parentElement.dataset.project;
-        }
+        let i= element.parentElement.dataset.index;
+        let project= element.parentElement.dataset.project;
 
         const overlay = document.querySelector('.overlay-edit');
         const display = document.querySelector('.edit-popup__entry');
@@ -319,7 +299,10 @@ export const domManipulator = (function () {
         title.classList.add('edit-popup__input');
         title.setAttribute('maxlength', '40');
         title.required = true;
+
+
         title.textContent = todos[i].name;
+
         // attatch index to title element so i can grab it when confirming edit
         // and change the array data for that to-do item
         title.dataset.index = i;
@@ -983,25 +966,8 @@ export const toDosManager = (function () {
     // removes selected to-do item from the array and re renders the display
     function deleteToDo(e, toDoList, display) {
         const element = e.target;
-        let i;
-        let project;
-        // sometimes the event target is the svg element, other times it is the use element.
-        // this ensures i get index of the to-do body item 
-        if (element.tagName === 'svg') {
-            i = element.parentElement.dataset.index;
-        } else if (element.tagName === 'use') {
-            i = element.parentElement.parentElement.dataset.index;
-        }
-
-        // sometimes the event target is the svg element, other times it is the use element.
-        // this ensures i get project of the to-do body item 
-        if (element.tagName === 'svg') {
-            project = element.parentElement.dataset.project;
-        } else if (element.tagName === 'use') {
-            project = element.parentElement.parentElement.dataset.project;
-        }
-
-        
+        let i= element.parentElement.dataset.index;
+        let project= element.parentElement.dataset.project;
         
         // render all to-dos from all projects if on the home page. otherwise
         // only render the relevent to-do items

@@ -817,31 +817,32 @@ li {
     background: url("images/check.png"), #3ba395;
     background-repeat: no-repeat;
     background-size: contain;
-  }
+}
   
-  .todo__icon {
+.todo__icon {
     width: 1.5rem;
     height: 1.5rem;
     fill: #501f3a;
     cursor: pointer;
     transition: all .2s;
-  }
+}
   
-  .todo__icon-edit {
+.todo__icon-edit {
     margin-right: 2rem;
-  }
+}
   
-  .todo__icon:hover {
+.todo__icon:hover {
     fill: #3ba395;
-  }
+}
   
-  .todo__icon-checked {
+.todo__icon-checked {
     fill: rgba(80, 31, 58, 0.4);
-  }
+    opacity: 0.5;
+}
   
-  .todo__icon-checked:hover {
+.todo__icon-checked:hover {
     fill: rgba(59, 163, 149, 0.5);
-  }
+}
   
 .todo:hover {
     transform: scale(1.003);
